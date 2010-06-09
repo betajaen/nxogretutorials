@@ -1,4 +1,4 @@
-# cake.pasta
+# nxogretutorials.pasta
 #
 # This file is part of NxOgre.
 # 
@@ -32,12 +32,38 @@ libraries:
     - %NXOGRE_DIR%/SDK/NxOgreDebug.lib if debug
     - %NXOGRE_DIR%/SDK/NxOgre.lib ifn debug
 products:
+    - name: Sandbox
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/
+        - %OGRE_HOME%/include/OIS/        
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - Sandbox
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
     - name: NxOgre101
       type: cpp
       builds:
         - dynamic library
       configurations:
-        - Release
+        - Final
         - Debug
       headers:
         - %OGRE_HOME%/include/
@@ -63,7 +89,7 @@ products:
       builds:
         - dynamic library
       configurations:
-        - Release
+        - Final
         - Debug
       headers:
         - %OGRE_HOME%/include/
@@ -89,7 +115,7 @@ products:
       builds:
         - dynamic library
       configurations:
-        - Release
+        - Final
         - Debug
       headers:
         - %OGRE_HOME%/include/
@@ -110,12 +136,12 @@ products:
       after:
         - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
         - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
-    - name: NxOgre303
+    - name: NxOgre104
       type: cpp
       builds:
         - dynamic library
       configurations:
-        - Release
+        - Final
         - Debug
       headers:
         - %OGRE_HOME%/include/
@@ -132,16 +158,16 @@ products:
         - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
         - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
       sources:
-        - NxOgre303
+        - NxOgre104
       after:
         - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
         - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
-    - name: NxOgre601
+    - name: NxOgre105
       type: cpp
       builds:
         - dynamic library
       configurations:
-        - Release
+        - Final
         - Debug
       headers:
         - %OGRE_HOME%/include/
@@ -158,16 +184,16 @@ products:
         - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
         - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
       sources:
-        - NxOgre601
+        - NxOgre105
       after:
         - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
         - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
-    - name: NxOgre803
+    - name: NxOgre106
       type: cpp
       builds:
         - dynamic library
       configurations:
-        - Release
+        - Final
         - Debug
       headers:
         - %OGRE_HOME%/include/
@@ -184,7 +210,334 @@ products:
         - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
         - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
       sources:
-        - NxOgre803
+        - NxOgre106
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre107
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/
+        - %OGRE_HOME%/include/OIS/        
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre107
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre108
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/
+        - %OGRE_HOME%/include/OIS/        
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre108
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre109
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/
+        - %OGRE_HOME%/include/OIS/        
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre109
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre110
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/
+        - %OGRE_HOME%/include/OIS/        
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre110
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre111
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/
+        - %OGRE_HOME%/include/OIS/        
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre111
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre113
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/
+        - %OGRE_HOME%/include/OIS/        
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre113
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre114
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/
+        - %OGRE_HOME%/include/OIS/        
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre114
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre117
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/  
+        - %OGRE_HOME%/include/OGRE/Terrain 
+        - %OGRE_HOME%/include/OIS/     
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OgreTerrain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreTerrain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre117
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre1001
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/  
+        - %OGRE_HOME%/include/OGRE/Terrain 
+        - %OGRE_HOME%/include/OIS/     
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OgreTerrain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreTerrain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre1001
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre1002
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/  
+        - %OGRE_HOME%/include/OGRE/Terrain 
+        - %OGRE_HOME%/include/OIS/     
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OgreTerrain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreTerrain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre1002
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre1003
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/  
+        - %OGRE_HOME%/include/OGRE/Terrain 
+        - %OGRE_HOME%/include/OIS/     
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OgreTerrain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreTerrain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre1003
+      after:
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
+        - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug
+    - name: NxOgre1004
+      type: cpp
+      builds:
+        - dynamic library
+      configurations:
+        - Final
+        - Debug
+      headers:
+        - %OGRE_HOME%/include/
+        - %OGRE_HOME%/include/OGRE/  
+        - %OGRE_HOME%/include/OGRE/Terrain 
+        - %OGRE_HOME%/include/OIS/     
+        - %OGRE_HOME%/boost_1_42/
+        - %NXOGRE_DIR%/../critter/sdk/
+      libraries:
+        - %OGRE_HOME%/lib/debug/OgreMain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreMain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OgreTerrain_d.lib if debug
+        - %OGRE_HOME%/lib/release/OgreTerrain.lib ifn debug
+        - %OGRE_HOME%/lib/debug/OIS_d.lib if debug
+        - %OGRE_HOME%/lib/release/OIS.lib ifn debug
+        - %OGRE_HOME%/boost_1_42/lib/
+        - %NXOGRE_DIR%/../critter/sdk/CritterDebugStatic.lib if debug
+        - %NXOGRE_DIR%/../critter/sdk/CritterStatic.lib ifn debug
+      sources:
+        - NxOgre1004
       after:
         - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ debug if debug
         - ../VC.postbuild.bat ^NAME^ ^CONFIGURATION^ release ifn debug

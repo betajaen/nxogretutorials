@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject Keyword="Win32Proj" TargetFrameworkVersion="131072" ProjectType="Visual C++" Name="NxOgre107" Version="9.00" ProjectGUID="{7c4f2e27-a266-92b3-e7f4-513a3b4c2653}">
+ <Platforms>
+  <Platform Name="Win32"/>
+ </Platforms>
+ <ToolFiles>
+ </ToolFiles>
+ <Configurations>
+  <Configuration ConfigurationType="2" CharacterSet="1" Name="Final|Win32" OutputDirectory="NxOgre107\Final" IntermediateDirectory="NxOgre107\Final">
+   <Tool CommandLine="" Name="VCPreBuildEventTool"/>
+   <Tool Name="VCCustomBuildTool"/>
+   <Tool Name="VCXMLDataGeneratorTool"/>
+   <Tool Name="VCWebServiceProxyGeneratorTool"/>
+   <Tool Name="VCMIDLTool"/>
+   <Tool AdditionalIncludeDirectories="$(NXOGRE_DIR)\SDK\;$(OGRE_HOME)\include\;$(OGRE_HOME)\include\OGRE\;$(OGRE_HOME)\include\OIS\;$(OGRE_HOME)\boost_1_42\;$(NXOGRE_DIR)\..\critter\sdk\" PreprocessorDefinitions="WIN32;WIN32;_DLL" Name="VCCLCompilerTool" RuntimeLibrary="2"/>
+   <Tool Name="VCManagedResourceCompilerTool"/>
+   <Tool Name="VCResourceCompilerTool"/>
+   <Tool Name="VCPreLinkEventTool"/>
+   <Tool AdditionalDependencies="NxOgre.lib OgreMain.lib OIS.lib CritterStatic.lib" AdditionalLibraryDirectories="$(NXOGRE_DIR)\SDK;$(OGRE_HOME)\lib\release;$(OGRE_HOME)\boost_1_42\lib\;$(NXOGRE_DIR)\..\critter\sdk" Name="VCLinkerTool" OutputFile="$(OutDir)\NxOgre107.dll"/>
+   <Tool Name="VCALinkTool"/>
+   <Tool Name="VCManifestTool"/>
+   <Tool Name="VCXDCMakeTool"/>
+   <Tool Name="VCBscMakeTool"/>
+   <Tool Name="VCFxCopTool"/>
+   <Tool Name="VCAppVerifierTool"/>
+   <Tool CommandLine="..\VC.postbuild.bat NxOgre107 Final release" Name="VCPostBuildEventTool"/>
+  </Configuration>
+  <Configuration ConfigurationType="2" CharacterSet="1" Name="Debug|Win32" OutputDirectory="NxOgre107\Debug" IntermediateDirectory="NxOgre107\Debug">
+   <Tool CommandLine="" Name="VCPreBuildEventTool"/>
+   <Tool Name="VCCustomBuildTool"/>
+   <Tool Name="VCXMLDataGeneratorTool"/>
+   <Tool Name="VCWebServiceProxyGeneratorTool"/>
+   <Tool Name="VCMIDLTool"/>
+   <Tool AdditionalIncludeDirectories="$(NXOGRE_DIR)\SDK\;$(OGRE_HOME)\include\;$(OGRE_HOME)\include\OGRE\;$(OGRE_HOME)\include\OIS\;$(OGRE_HOME)\boost_1_42\;$(NXOGRE_DIR)\..\critter\sdk\" PreprocessorDefinitions="WIN32;WIN32;_DLL" Name="VCCLCompilerTool" RuntimeLibrary="3"/>
+   <Tool Name="VCManagedResourceCompilerTool"/>
+   <Tool Name="VCResourceCompilerTool"/>
+   <Tool Name="VCPreLinkEventTool"/>
+   <Tool AdditionalDependencies="NxOgreDebug.lib OgreMain_d.lib OIS_d.lib CritterDebugStatic.lib" AdditionalLibraryDirectories="$(NXOGRE_DIR)\SDK;$(OGRE_HOME)\lib\debug;$(OGRE_HOME)\boost_1_42\lib\;$(NXOGRE_DIR)\..\critter\sdk" Name="VCLinkerTool" OutputFile="$(OutDir)\NxOgre107Debug.dll"/>
+   <Tool Name="VCALinkTool"/>
+   <Tool Name="VCManifestTool"/>
+   <Tool Name="VCXDCMakeTool"/>
+   <Tool Name="VCBscMakeTool"/>
+   <Tool Name="VCFxCopTool"/>
+   <Tool Name="VCAppVerifierTool"/>
+   <Tool CommandLine="..\VC.postbuild.bat NxOgre107 Debug debug" Name="VCPostBuildEventTool"/>
+  </Configuration>
+ </Configurations>
+ <References>
+ </References>
+ <Files>
+  <File RelativePath="..\NxOgre107\107.cpp"/>
+ </Files>
+</VisualStudioProject>
