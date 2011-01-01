@@ -202,7 +202,7 @@ public:
   box_desc.mGroupsMask.bits1 = 1;
 
   Body* box = mRenderSystem->createBody(box_desc, globalPose, "cube.1m.mesh", bodyDescription);
-  static_cast<Ogre::Entity*>(box->getSceneNode()->getAttachedObject(0))->setMaterialName("radioactive-cube-from-nxogre.org");
+  box->getNode()->getEntityAt(0)->setMaterialName("radioactive-cube-from-nxogre.org");
 
   return box;
  }

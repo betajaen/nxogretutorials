@@ -356,15 +356,15 @@ Sample* s;
 
 extern "C" _OgreSampleExport void dllStartPlugin()
 {
-	s = new NxOgre107;
-	sp = OGRE_NEW OgreBites::SamplePlugin(s->getInfo()["Title"] + " Sample");
-	sp->addSample(s);
-	Ogre::Root::getSingleton().installPlugin(sp);
+ s = new NxOgre107;
+ sp = OGRE_NEW OgreBites::SamplePlugin(s->getInfo()["Title"] + " Sample");
+ sp->addSample(s);
+ Ogre::Root::getSingleton().installPlugin(sp);
 }
 
 extern "C" _OgreSampleExport void dllStopPlugin()
 {
-	Ogre::Root::getSingleton().uninstallPlugin(sp); 
-	OGRE_DELETE sp;
-	delete s;
+ Ogre::Root::getSingleton().uninstallPlugin(sp); 
+ OGRE_DELETE sp;
+ delete s;
 }

@@ -114,11 +114,11 @@ public:
    
    Body* body = static_cast<Body*>(rigidbody);
    
-   Ogre::SceneNode* node = body->getSceneNode();
+   Ogre::SceneNode* node = body->getNode()->getSceneNode();
    
    if (node->numChildren() == 0)
    {
-    Ogre::SceneNode* childNode = body->getSceneNode()->createChildSceneNode();
+    Ogre::SceneNode* childNode = body->getNode()->createChildSceneNode();
     childNode->setInheritOrientation(false);
     childNode->attachObject(mSceneMgr->createParticleSystem("zz" + NxOgre::to_s(mNbParticles++), "nxogre.zz"));
    }
@@ -142,12 +142,12 @@ public:
    
    Body* body = static_cast<Body*>(rigidbody);
    
-   Ogre::SceneNode* node = body->getSceneNode();
+   Critter::Node* node = body->getNode();
    
    if (node->numChildren() == 0)
     continue;
    
-   Ogre::ParticleSystem* particleSys = static_cast<Ogre::ParticleSystem*>(static_cast<Ogre::SceneNode*>(node->getChild(0))->getAttachedObject(0));
+   Ogre::ParticleSystem* particleSys = node->getParticleSystemAt(0);
    particleSys->setEmitting(false);
 
   }
@@ -230,6 +230,7 @@ public:
   mCamera->setFarClipDistance(1000.0f);
   mCameraMan->setTopSpeed(7.5);
   
+
   setupPhysics();
  }
  
@@ -271,15 +272,15 @@ Sample* s;
 
 extern "C" _OgreSampleExport void dllStartPlugin()
 {
-	s = new NxOgre106;
-	sp = OGRE_NEW OgreBites::SamplePlugin(s->getInfo()["Title"] + " Sample");
-	sp->addSample(s);
-	Ogre::Root::getSingleton().installPlugin(sp);
+ s = new NxOgre106;
+ sp = OGRE_NEW OgreBites::SamplePlugin(s->getInfo()["Title"] + " Sample");
+ sp->addSample(s);
+ Ogre::Root::getSingleton().installPlugin(sp);
 }
 
 extern "C" _OgreSampleExport void dllStopPlugin()
 {
-	Ogre::Root::getSingleton().uninstallPlugin(sp); 
-	OGRE_DELETE sp;
-	delete s;
+ Ogre::Root::getSingleton().uninstallPlugin(sp); 
+ OGRE_DELETE sp;
+ delete s;
 }

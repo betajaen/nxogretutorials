@@ -80,8 +80,6 @@ public:
   // Create the rendersystem.
   mRenderSystem = new Critter::RenderSystem(mScene, mSceneMgr);
   
-  mRenderSystem->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);
-  
   BodyDescription desc;
   desc.mMass = 40.0f;
   BoxDescription box;

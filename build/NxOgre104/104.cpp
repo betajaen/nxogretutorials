@@ -211,7 +211,7 @@ public:
   light->setType(Ogre::Light::LT_POINT);
   Ogre::ColourValue colour(65.0f / 255.0f, 105.0f / 255.0f, 225.0f / 255.0f);
   light->setDiffuseColour(colour);
-  orb->getSceneNode()->attachObject(light);
+  orb->getNode()->addMovableObject(light);
   return orb;
  }
 

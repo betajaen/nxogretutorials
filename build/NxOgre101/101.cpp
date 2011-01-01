@@ -74,15 +74,15 @@ public:
 
   // Create the rendersystem.
   mRenderSystem = new Critter::RenderSystem(mScene, mSceneMgr);
+  mRenderSystem->createVisualDebugger();
   
-  // mRenderSystem->setVisualisationMode(NxOgre::Enums::VisualDebugger_ShowAll);
   // Setup a BodyDescription.
   Critter::BodyDescription bodyDescription;
   bodyDescription.mMass = 40.0f; // Set the mass to 40kg.
   
   // Finally create the body.
   mBody = mRenderSystem->createBody(NxOgre::BoxDescription(1,1,1), NxOgre::Vec3(0,5,0), "cube.1m.mesh", bodyDescription);
-  
+
  }
 
  void stopPhysics()
