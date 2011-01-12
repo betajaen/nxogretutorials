@@ -8,7 +8,7 @@
 	<div id="content">
 		<h1>Block 1.1 - Real numbers, Units and Axes</h1>
 		<div class="document">
-<p>In this chapter we quickly go through the very core essentials of NxOgre (and that of Ogre and PhysX), it is probable you know this material already but it is worth having a glance through and tackling a question or two before moving onto the next chapter.</p>
+<p>In this chapter we quickly go through the very core essentials of NxOgre (and that of Ogre and PhysX), it is likely you know this material already but it is worth having a glance through.</p>
 <div class="section" id="real-numbers">
 <h1>Real numbers</h1>
 <p>A real number is an integer (0, 1, 2, ...) or a fractional number (3.1, 3.14, 3.142, ...). It is similar to a <a class="reference external" href="http://en.wikipedia.org/wiki/Real_number">Real Number</a> in mathematics.</p>
@@ -25,7 +25,14 @@ NxOgre::Real F = m * t;</pre></div>
 </div>
 <div class="section" id="dimensions">
 <h1>Dimensions</h1>
-<p>Text</p>
+<p>A dimension is an extension of space in a given direction. Although it could be seen as the minimium amount of coordinates required to describe a shape with in it. A line can be found by one coordinate, a surface by two, and a volume by three.</p>
+<p><div class="image-center"><img src="dimensions.png" /></div></p>
+<p>Each dimension has a name; 1st is called <strong>X</strong>, 2nd is called <strong>Y</strong> and the 3rd is Z and they are perpendicular to each other. In NxOgre and PhysX; X is typically coloured in red, Y in green and Z in blue.</p>
+<p><div class="image-center"><img src="axis.png" /></div></p>
+<p>As we exist in three dimensions, so does NxOgre and PhysX. Although with some extra code, the third dimension Z can be ignored, more or less making the world act as a two dimensional space. Even further code can be added to behave in a single dimension, if you so wish.</p>
+<p>By default Scene gravity is applied in the Y direction, so Y is considered &quot;up&quot;. NxOgre also follows Ogre's tradition of treating -Z as &quot;forward&quot;, although this isn't enforced.</p>
+<blockquote>
+If the concept of living in different dimensions peaks your interest, then you should have a read of <a class="reference external" href="http://www.amazon.com/Flatland-Romance-Dimensions-Thrift-Editions/dp/048627263X">Flatland - A Romance of Many Dimensions</a> by Edwin A. Abbot, a short Victorian narrative of living in a two dimensional world.</blockquote>
 </div>
 <div class="section" id="weights-and-measures">
 <h1>Weights and Measures</h1>
