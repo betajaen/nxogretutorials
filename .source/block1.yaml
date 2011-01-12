@@ -1,0 +1,18 @@
+title: Block 1
+layout: general
+sidebar: yes
+---
+
+Block One covers the very basics of NxOgre and the more frequently used from the *Vec3* (Vector), *Quat* (Quaternion) and *Time step* math classes and how the relate to each other, to *Shapes* and *Meshes*, then finally accessing external resources via *Paths*.
+
+Chapter List
+------------
+
+1. [[block1_1 Real numbers, Units and Axes]]
+2. [[block1_2 Length and Angles]]
+3. [[block1_3 Mass and Time]]
+4. [[block1_4 Shapes]]
+5. [[block1_5 Paths]]
+
+* [[block1_a Answers]]
+* [[block1_fr Further Reading]]

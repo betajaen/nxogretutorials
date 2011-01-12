@@ -1,7 +1,6 @@
 title: Frontmatter
 layout: title_page
-sidebar: yes
+sidebar: no
 ---
 
-[[/introduction Introduction]]
-[[!image.png C]]
+[[block1 Block One - Units]]

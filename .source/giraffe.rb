@@ -25,36 +25,49 @@ Dir.glob("*.yaml").each do |f|
 end
 
 # Generate SIDEBAR here.
-sidebar_html = "<p class=\"sidebar\">"
+sidebar_html = String.new
 SIDEBAR.each_pair do |name, title|
 	sidebar_html << "<a href=\"#{BASE_LINK}#{name}.html\">#{title}</a> | "  
 end
 sidebar_html.chop!.chop!.chop!
-sidebar_html << "</p>"
 
 
 
 Dir.glob("*.yaml").each do |f|
 	fn = File.basename(f).split('.')[0]
+	puts fn
 	file = File.read(f)
 	header, content = file.split('---',2)
 	header.strip!
 	content.strip!
 	header = YAML.load(header)
-	html = header["layout"] == nil ? LAYOUTS["basic"] : LAYOUTS[header["layout"]]
+	html = String.new
+	if header["layout"] == nil
+		html << LAYOUTS["basic"]
+	else
+		html << LAYOUTS[header["layout"]]
+	end
+	
 	title = header["title"] == nil ? "Page Name" : header["title"]
 
 	body  = RbST.new(content).to_html
 
+	# hr
+	body.gsub!("<p>---</p>", "<hr />")
+
 	# Code
-	body.gsub!(/(<!--.*-->)/m) do |v|
-		CodeRay.scan(v.slice(4..-4).strip, :cpp).div(:css => :class)
+	body.gsub!(/(<!--?[^>]*-->)/m) do |v|
+		t = CodeRay.scan(v.slice(4..-4).strip, :cpp).div(:css => :class)
+		t.strip!
+		t.gsub!("<div class=\"CodeRay\">","")
+		t.chop!.chop!.chop!.chop!.chop!.chop!.strip! # remove </div>
+		t.gsub!("class=\"code\"", "class=\"code-block\"")
+		t
 	end
 
-	# Internal links [[\link title]]
-	body.gsub!(/(\[\[\/\w+\s\w+\]\])/) do |v|
-		link, title = v.slice(3..-3).strip.split(" ", 2)
-		"<a href=\"#{BASE_LINK}#{link}.html\">#{title}</a>"
+	# Inline code
+	body.gsub!(/(&#64;[\w\s\d\*-_><\(\)\[\]\{\}]+&#64;)/) do |v|
+		"<code class=\"code-inline\">" + v.slice(5..-6) + "</code>"
 	end
 
 	# Images
@@ -78,6 +91,13 @@ Dir.glob("*.yaml").each do |f|
 		end
 		
 		ret
+	end
+
+	# Internal links [[link title]]
+	body.gsub!(/(\[\[?[^\]]*\]\])/) do |v|
+		puts v
+		l, t = v.slice(2..-3).strip.split(" ", 2)
+		"<a href=\"#{BASE_LINK}#{l}.html\">#{t}</a>"
 	end
 
 	html.gsub!('{BODY}', body)

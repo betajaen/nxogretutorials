@@ -1,0 +1,78 @@
+title: Block 1.1 - Real numbers, Units and Axes
+layout: general
+sidebar: no
+---
+
+In this chapter we quickly go through the very core essentials of NxOgre (and that of Ogre and PhysX), it is probable you know this material already but it is worth having a glance through and tackling a question or two before moving onto the next chapter.
+
+Real numbers
+============
+
+A real number is an integer (0, 1, 2, ...) or a fractional number (3.1, 3.14, 3.142, ...). It is similar to a `Real Number`_ in mathematics.
+
+Due to the float point precision; NxOgre, PhysX and Ogre Real numbers are rational numbers so therefore has a limit in precision. However the loss of precision is only with numbers with a large number of significant figures, which are either to small or too large to make use of in a computerised Physics simulation.
+
+
+NxOgre's Real (and Ogre's) is an alias of the C++ @float@ data type. Although it can be changed to a @double@ data type if PhysX is compiled with double precision. This is however only applicable to users with PhysX's source code, which is out of reach for most users.
+
+..	namespace NxOgre
+	{
+		typedef float Real;
+	}
+
+
+NxOgre's Real, Ogre's Real or PhysX's NxReal are the same data type, therefore interchangeable and does not require any conversion function or code.
+
+..	Ogre::Real m = 50.0f;
+	NxReal t = 25.0f;
+	NxOgre::Real F = m * t;
+
+
+.. _Real Number: http://en.wikipedia.org/wiki/Real_number
+
+
+Dimensions
+==========
+
+
+Text
+
+Weights and Measures
+====================
+
+To provide a common way of comparing how far away is something, or how large is this, or how long does that take to complete, we use a system of agreed units. Most countries use the metric system, metres (meters) and kilograms, and everyone uses seconds to measure time. If your in a country that uses the imperial system (inches/feet and pounds), then you'll have to adjust. For a frame of reference a meter is just under  half the height of an average interior door, and two pounds of sugar is about a kilogram, and it is highly probable you've already seen road signs measured in kilometers already.
+
+The modern form of the metric system is the `International System of Units`_ or **SI** was agreed upon many years ago. It is commonly used in scientific communities, and if not nearly all of the countries in the world.
+
+As, you've probably guessed by now NxOgre uses the SI system for measurement. It only requires the metre-kilogram-second base units, as the other units of electric current, temperature, luminous intensity and amount of substances are sadly not used by features of PhysX.
+
++---------------+--------+--------------------+
+| Name          | Symbol | Quantity           |
++===============+========+====================+
+| metre (meter) | m      | Length or Distance |
++---------------+--------+--------------------+
+| kilogram      | kg     | Mass               |
++---------------+--------+--------------------+
+| second        | s      | Time               |
++---------------+--------+--------------------+
+
+
+Unfortunately, due to the nature of the C++ syntax, it isn't possible to give Real numbers naturally as we do in the real world.
+
+.. Real distance = 5.0 m/s * 2.0 s;
+
+
+Substitutions could be used, but are hardly practical to use for an end-user. 
+
+.. Real distance = metres_per_second(5.0) * seconds(2.0);
+
+Instead NxOgre, just assumes your length units are in meters, your masses are in kilograms and your time is measured in seconds. 
+
+.. Real distance = 5.0 * 2.0;
+
+
+.. _International System of Units: http://www.bipm.org/en/si/si_brochure/general.html
+
+---
+
+[[block1 Previous]] | [[block1_2 Next]]
