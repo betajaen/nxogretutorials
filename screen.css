@@ -1,0 +1,57 @@
+body
+{
+	color: #333;
+	font: 14px helvetica,arial,sans-serif
+}
+
+p 
+{
+	line-height: 1.5em;
+	margin: 1em 0;
+}
+
+div h1
+{
+	border-bottom: 1px #CCCCCC solid;
+}
+
+div#nav, div#content
+{
+	margin: 0 auto;
+	width: 960px;
+}
+
+div#content h1.title_page
+{
+	font-size: 256px;
+	color: #ccc;
+	border:0;
+	line-height: 0.2;
+	text-align: right;
+	margin:100px 0 48px 0;
+}
+
+div#content h1.title_page span
+{
+	font-size: 50px;
+	color: #888;
+}
+
+div#content p.author
+{
+	font-size:28px;
+	text-align: center;
+	color: #999;
+}
+
+div#nav
+{
+	border-top: 1px #CCCCCC solid;
+	font-size: 10px;
+	text-align: center;	
+}
+
+p.c, p.c, div.c, div.c
+{
+	text-align: center;
+}
