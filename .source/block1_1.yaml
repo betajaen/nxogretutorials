@@ -5,8 +5,8 @@ sidebar: no
 
 In this chapter we quickly go through the very core essentials of NxOgre (and that of Ogre and PhysX), it is likely you know this material already but it is worth having a glance through.
 
-Real numbers
-============
+====real_numbers Real numbers
+
 
 A real number is an integer (0, 1, 2, ...) or a fractional number (3.1, 3.14, 3.142, ...). It is similar to a `Real Number`_ in mathematics.
 
@@ -31,8 +31,7 @@ NxOgre's Real, Ogre's Real or PhysX's NxReal are the same data type, therefore i
 .. _Real Number: http://en.wikipedia.org/wiki/Real_number
 
 
-Dimensions
-==========
+====dimensions Dimensions
 
 A dimension is an extension of space in a given direction. Although it could be seen as the minimium amount of coordinates required to describe the location of a shape with in it. One dimensional space, requires one coordinate.  Two dimensional space; two, and three dimensional space - our space, requires three dimensions.
 
@@ -44,15 +43,14 @@ Each dimension has a name; 1st is called **X**, 2nd is called **Y** and the 3rd 
 
 As we exist in three dimensions, so does NxOgre and PhysX. Although with some extra code, the third dimension Z can be ignored, more or less making the world act as a two dimensional space. Even further code can be added to behave in a single dimension, if you so wish.
 
-By default Scene gravity is applied in the Y direction, so Y is considered "up". NxOgre also follows Ogre's tradition of treating -Z as "forward", although this isn't enforced.
+Normally in NxOgre, Gravity is applied in the Y direction (-9.8 m/s), so Y is considered "up". NxOgre also follows Ogre's tradition of treating -Z as "forward", although this isn't enforced.
 
 	If the concept of living in different dimensions peaks your interest, then you should have a read of `Flatland - A Romance of Many Dimensions`_ by Edwin A. Abbot, a short Victorian narrative of beings living in a two dimensional world.
 
 
 .. _Flatland - A Romance of Many Dimensions: http://www.amazon.com/Flatland-Romance-Dimensions-Thrift-Editions/dp/048627263X
 
-Weights and Measures
-====================
+====weights_and_measures Weights and Measures
 
 To provide a common way of comparing how far away is something, or how large is this, or how long does that take to complete, we use a system of agreed units. Most countries use the metric system, metres (meters) and kilograms, and everyone uses seconds to measure time. If your in a country that uses the imperial system (inches/feet and pounds), then you may not be completely familar with it.
 

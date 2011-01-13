@@ -2,10 +2,34 @@ require 'rbst'		# gem install maruku
 require 'YAML'
 require 'rubygems'
 require 'coderay'
+require 'digest/md5'
 
 BASE_LINK = ""
 LAYOUTS = {"basic" => "<html><head><title>{TITLE}</title></head><body>{BODY}</body></html>"}
 SIDEBAR = {}
+
+def makeLatex(string)
+	string.gsub!("<!-- $$","")
+	string.gsub!("-->","")
+	string.strip!
+	string.gsub!("||", '\\')
+
+	# units
+	string.gsub!(/(\{[^}]+\})/) do |v|
+		"\\unit" + v
+	end
+
+	str = "\\documentclass[12pt]{article}\n\\pagestyle{empty}\n\\usepackage{mathtools}\n\\newcommand{\\unit}[1]{\\ensuremath{\\, \\mathrm{#1}}}\\begin{document}\n\\begin{align*}\n#{string}\n\\end{align*}\n\\end{document}\n"
+	File.open('.temp/eq.tex', 'w') {|f| f.write(str) }	
+
+    name = Digest::MD5.hexdigest(string).downcase
+    name << ".png"
+
+    system "latex -halt-on-error -output-directory .temp .temp/eq.tex"
+    system "dvipng -T tight -bg Transparent -o ../eq/#{name} .temp/eq.dvi"
+
+    "<div class=\"equation-block\"><img src=\"eq/#{name}\" alt=\"#{string}\" /></div>"
+end
 
 Dir.glob("layouts/*.html") do |f|
 	fn = File.basename(f).split('.')[0]
@@ -55,6 +79,11 @@ Dir.glob("*.yaml").each do |f|
 	# hr
 	body.gsub!("<p>---</p>", "<hr />")
 
+	# Latex
+	body.gsub!(/(<!--\s\$\$[^>]*-->)/m) do |v|
+		makeLatex(v)
+	end
+
 	# Code
 	body.gsub!(/(<!--?[^>]*-->)/m) do |v|
 		t = CodeRay.scan(v.slice(4..-4).strip, :cpp).div(:css => :class)
@@ -93,11 +122,24 @@ Dir.glob("*.yaml").each do |f|
 		ret
 	end
 
+	# Heading with anchors [[$name]]
+	body.gsub!(/(<p>\=\=\=\=.+<\/p>)/) do |v|
+		l, t = v.slice(7..-5).strip.split(" ", 2)
+		puts l
+		puts t
+		"<h2><a name=\"#{l}\"></a>#{t}</h2>"
+	end
+
 	# Internal links [[link title]]
 	body.gsub!(/(\[\[?[^\]]*\]\])/) do |v|
 		puts v
 		l, t = v.slice(2..-3).strip.split(" ", 2)
-		"<a href=\"#{BASE_LINK}#{l}.html\">#{t}</a>"
+		if (l.index('.'))
+			l.gsub!(".",".html#")
+		else
+			l << ".html"
+		end
+		"<a href=\"#{BASE_LINK}#{l}\">#{t}</a>"
 	end
 
 	html.gsub!('{BODY}', body)

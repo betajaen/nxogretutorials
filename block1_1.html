@@ -9,8 +9,7 @@
 		<h1>Block 1.1 - Real numbers, Units and Axes</h1>
 		<div class="document">
 <p>In this chapter we quickly go through the very core essentials of NxOgre (and that of Ogre and PhysX), it is likely you know this material already but it is worth having a glance through.</p>
-<div class="section" id="real-numbers">
-<h1>Real numbers</h1>
+<h2><a name="real_numbers"></a>Real numbers</h2>
 <p>A real number is an integer (0, 1, 2, ...) or a fractional number (3.1, 3.14, 3.142, ...). It is similar to a <a class="reference external" href="http://en.wikipedia.org/wiki/Real_number">Real Number</a> in mathematics.</p>
 <p>Due to the float point precision; NxOgre, PhysX and Ogre Real numbers are rational numbers so therefore has a limit in precision. However the loss of precision is only with numbers with a large number of significant figures, which are either to small or too large to make use of in a computerised Physics simulation.</p>
 <p>NxOgre's Real (and Ogre's) is an alias of the C++ <code class="code-inline">float</code> data type. Although it can be changed to a <code class="code-inline">double</code> data type if PhysX is compiled with double precision. This is however only applicable to users with PhysX's source code, which is out of reach for most users.</p>
@@ -22,20 +21,16 @@
 <div class="code-block"><pre>Ogre::Real m = <span class="i">5</span><span class="fl">0</span><span class="fl">.0f</span>;
 NxReal t = <span class="i">2</span><span class="fl">5</span><span class="fl">.0f</span>;
 NxOgre::Real F = m * t;</pre></div>
-</div>
-<div class="section" id="dimensions">
-<h1>Dimensions</h1>
+<h2><a name="dimensions"></a>Dimensions</h2>
 <p>A dimension is an extension of space in a given direction. Although it could be seen as the minimium amount of coordinates required to describe the location of a shape with in it. One dimensional space, requires one coordinate.  Two dimensional space; two, and three dimensional space - our space, requires three dimensions.</p>
 <p><div class="image-center"><img src="dimensions.png" /></div></p>
 <p>Each dimension has a name; 1st is called <strong>X</strong>, 2nd is called <strong>Y</strong> and the 3rd is <strong>Z</strong> and they are perpendicular to each other. In NxOgre and PhysX; X is typically coloured in red, Y in green and Z in blue.</p>
 <p><div class="image-center"><img src="axis.png" /></div></p>
 <p>As we exist in three dimensions, so does NxOgre and PhysX. Although with some extra code, the third dimension Z can be ignored, more or less making the world act as a two dimensional space. Even further code can be added to behave in a single dimension, if you so wish.</p>
-<p>By default Scene gravity is applied in the Y direction, so Y is considered &quot;up&quot;. NxOgre also follows Ogre's tradition of treating -Z as &quot;forward&quot;, although this isn't enforced.</p>
+<p>Normally in NxOgre, Gravity is applied in the Y direction (-9.8 m/s), so Y is considered &quot;up&quot;. NxOgre also follows Ogre's tradition of treating -Z as &quot;forward&quot;, although this isn't enforced.</p>
 <blockquote>
 If the concept of living in different dimensions peaks your interest, then you should have a read of <a class="reference external" href="http://www.amazon.com/Flatland-Romance-Dimensions-Thrift-Editions/dp/048627263X">Flatland - A Romance of Many Dimensions</a> by Edwin A. Abbot, a short Victorian narrative of beings living in a two dimensional world.</blockquote>
-</div>
-<div class="section" id="weights-and-measures">
-<h1>Weights and Measures</h1>
+<h2><a name="weights_and_measures"></a>Weights and Measures</h2>
 <p>To provide a common way of comparing how far away is something, or how large is this, or how long does that take to complete, we use a system of agreed units. Most countries use the metric system, metres (meters) and kilograms, and everyone uses seconds to measure time. If your in a country that uses the imperial system (inches/feet and pounds), then you may not be completely familar with it.</p>
 <p>For a frame of reference a meter is just under  half the height of an average interior door, and two pounds of sugar is about a kilogram, and it is highly probable you've already seen road signs measured in kilometers already.</p>
 <p>The modern form of the metric system is the <a class="reference external" href="http://www.bipm.org/en/si/si_brochure/general.html">International System of Units</a> or <strong>SI</strong> was agreed upon many years ago. It is commonly used in scientific communities, and if not nearly all of the countries in the world.</p>
@@ -75,7 +70,6 @@ If the concept of living in different dimensions peaks your interest, then you s
 <div class="code-block"><pre>Real distance = <span class="fl">5</span><span class="fl">.0</span> * <span class="fl">2</span><span class="fl">.0</span>;</pre></div>
 <hr />
 <p><a href="block1.html">Previous</a> | <a href="block1_2.html">Next</a></p>
-</div>
 </div>
 	</div>
 	<div id="nav">
