@@ -15,7 +15,7 @@ def makeLatex(string)
 	string.gsub!("<!-- $$","")
 	string.gsub!("-->","")
 	string.strip!
-	string.gsub!("||", '\\')
+	string.gsub!("..", '\\')
 	puts string
 
 	# units

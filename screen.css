@@ -80,14 +80,14 @@ table th td, table tr td, table, table th, table tr
 	border: none;
 }
 
-table th, table tr td
+table tr th, table tr td
 {
 	border-bottom: 1px solid #cccccc;
 	padding: 0.2em;
 	line-height: 1.7;
 }
 
-table th
+table tr th
 {
 	border-bottom: 1px solid #999999;
 	font-weight: bolder;

@@ -55,18 +55,66 @@ You'll meet more of the shapes in a later chapter, and blocks.
 
     My sister and I are trying to break a world record by stacking wooden blocks on top of each other into a tower. We are not sure how high the tower is. But we know how many blocks we used, and the width and length of the tower.
 
-    Assuming each block is the same size. How high is the tower?
+    * **Blocks** 15000
+    * **Tower size**
+        * Width 25cm
+        * Length 25cm
+    * **Block size**
+        * Width 5cm
+        * Length 1cm
+        * Height 1.5cm
 
-    Blocks used 15000.
-    Tower size; Width=25cm, Length=25cm 
-    Block size; Width=5cm, Length=1cm, Height=1.5cm
+    Assuming each block is the same size. How high is the tower?
 
     [[block1_a.answer1_2 Answer]]
 
 Vectors
 =======
 
-Text
+To express lengths, distances and of course directions in NxOgre, we use a vector. If you've ever taken an advanced course in Mathmatics then yes, the vector is exactly like a `vector`_.
+
+[[!vector1.png C]]
+
+At first glance a vector is just a point in space, as it carries the x, y, z components with it. Depending on the use of the vector it may be a coordinate, size or a normal.
+
+Coordinates you should be already familar with. Coordinates may be refered in "Global Space" or "Local Space", the difference being is how they refer to an arbitrary point. In Global Space, an ant's position would be in reference to the world center (0,0,0), where as in local space the ant's position would be refered to where the ant is standing on; i.e. a stone step.
+
+In NxOgre, nearly everything is referred to in Global Space, but in Ogre due to the use of the Scene Graph Global and Local spaces are used frequently. 
+
+Normals can represent velocities, directions and direction of faces of triangles.
+
+Although normals are vectors, they are technically two components; a magnitude (length of the vector), and normalised direction.
+
++---------------+---------------------------------------------------------------------------+
+| **Magnitude** | .. $$ ||\mathbf{m}|| = \sqrt{x^2 + y^2 + z^2}                             |
++---------------+---------------------------------------------------------------------------+
+| **Direction** | .. $$ \mathbf{v}_x &= \mathbf{v}_x \times \frac{1}{||\mathbf{m}||} ....   |
+|               |       \mathbf{v}_y &= \mathbf{v}_y \times \frac{1}{||\mathbf{m}||} ....   |
+|               |       \mathbf{v}_z &= \mathbf{v}_z \times \frac{1}{||\mathbf{m}||}        |
++---------------+---------------------------------------------------------------------------+
+
+text.
+
+[[!vector2.png C]]
+
+[[!vector3.png C]]
+
+In NxOgre, Ogre and PhysX a class is reserved to hold three dimensional components; x,y,z as Real types. PhysX refers them as NxVec3 which most likely you'll never see, NxOgre are named *Vec3* and Ogre's are called Vector3.
+
+They are all similarly structured as so:
+
+.. namespace NxOgre
+   {
+       class Vec3
+       {
+           public:
+            Real x, y, z;
+       };
+   }
+
+The x, y, z components are publically accesible and meant to be set directly, without the need of get/set functions.
+
+.. _vector: http://en.wikipedia.org/wiki/Euclidean_vector
 
 Angles
 ======
