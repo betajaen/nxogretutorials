@@ -91,7 +91,7 @@ Normals can represent velocities, directions and direction of faces of triangles
 
 [[!vector3.png C]]
 
-Although normals are vectors, they are technically two components; a magnitude (length of the vector), and normalised direction.
+Although normals are vectors, they are technically two components; a magnitude (length of the vector), and normalised direction. The magnitude is the length of the line between the world center (0,0,0) to the normal position; e.g. (10,12,5) and the direction is the norm of the vector:
 
 +---------------+---------------------------------------------------------------------------+-------------------+
 | Component     | Operation                                                                 | Function          |
@@ -101,15 +101,16 @@ Although normals are vectors, they are technically two components; a magnitude (
 | **Direction** | .. $$ \mathbf{v}_i &= \mathbf{v}_i \times \frac{1}{||\mathbf{m}||}        | @Vec3::normalise@ |
 +---------------+---------------------------------------------------------------------------+-------------------+
 
-text.
-
 Sizes
 ~~~~~
 
 Text.
 
-[[!vector2.png C]]
+[[!vector4.png C]]
 
+
+NxOgre::Vec3
+~~~~~~~~~~~~
 
 In NxOgre, Ogre and PhysX a class is reserved to hold three dimensional components; x,y,z as Real types. PhysX refers them as NxVec3 which most likely you'll never see, NxOgre are named *Vec3* and Ogre's are called Vector3.
 

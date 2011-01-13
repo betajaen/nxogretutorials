@@ -98,7 +98,7 @@
 <h2>Normals</h2>
 <p>Normals can represent velocities, directions and direction of faces of triangles.</p>
 <p><div class="image-center"><img src="vector3.png" /></div></p>
-<p>Although normals are vectors, they are technically two components; a magnitude (length of the vector), and normalised direction.</p>
+<p>Although normals are vectors, they are technically two components; a magnitude (length of the vector), and normalised direction. The magnitude is the length of the line between the world center (0,0,0) to the normal position; e.g. (10,12,5) and the direction is the norm of the vector:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -124,12 +124,14 @@
 </tr>
 </tbody>
 </table>
-<p>text.</p>
 </div>
 <div class="section" id="sizes">
 <h2>Sizes</h2>
 <p>Text.</p>
-<p><div class="image-center"><img src="vector2.png" /></div></p>
+<p><div class="image-center"><img src="vector4.png" /></div></p>
+</div>
+<div class="section" id="nxogre-vec3">
+<h2>NxOgre::Vec3</h2>
 <p>In NxOgre, Ogre and PhysX a class is reserved to hold three dimensional components; x,y,z as Real types. PhysX refers them as NxVec3 which most likely you'll never see, NxOgre are named <em>Vec3</em> and Ogre's are called Vector3.</p>
 <p>They are all similarly structured as so:</p>
 <div class="code-block"><pre><span class="r">namespace</span> NxOgre
