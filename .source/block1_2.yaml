@@ -77,27 +77,39 @@ To express lengths, distances and of course directions in NxOgre, we use a vecto
 
 At first glance a vector is just a point in space, as it carries the x, y, z components with it. Depending on the use of the vector it may be a coordinate, size or a normal.
 
+Coordinates
+~~~~~~~~~~~
+
 Coordinates you should be already familar with. Coordinates may be refered in "Global Space" or "Local Space", the difference being is how they refer to an arbitrary point. In Global Space, an ant's position would be in reference to the world center (0,0,0), where as in local space the ant's position would be refered to where the ant is standing on; i.e. a stone step.
 
 In NxOgre, nearly everything is referred to in Global Space, but in Ogre due to the use of the Scene Graph Global and Local spaces are used frequently. 
 
+Normals
+~~~~~~~
+
 Normals can represent velocities, directions and direction of faces of triangles.
+
+[[!vector3.png C]]
 
 Although normals are vectors, they are technically two components; a magnitude (length of the vector), and normalised direction.
 
-+---------------+---------------------------------------------------------------------------+
-| **Magnitude** | .. $$ ||\mathbf{m}|| = \sqrt{x^2 + y^2 + z^2}                             |
-+---------------+---------------------------------------------------------------------------+
-| **Direction** | .. $$ \mathbf{v}_x &= \mathbf{v}_x \times \frac{1}{||\mathbf{m}||} ....   |
-|               |       \mathbf{v}_y &= \mathbf{v}_y \times \frac{1}{||\mathbf{m}||} ....   |
-|               |       \mathbf{v}_z &= \mathbf{v}_z \times \frac{1}{||\mathbf{m}||}        |
-+---------------+---------------------------------------------------------------------------+
++---------------+---------------------------------------------------------------------------+-------------------+
+| Component     | Operation                                                                 | Function          |
++===============+===========================================================================+===================+
+| **Magnitude** | .. $$ ||\mathbf{m}|| = \sqrt{x^2 + y^2 + z^2}                             | @Vec3::magnitude@ |
++---------------+---------------------------------------------------------------------------+-------------------+
+| **Direction** | .. $$ \mathbf{v}_i &= \mathbf{v}_i \times \frac{1}{||\mathbf{m}||}        | @Vec3::normalise@ |
++---------------+---------------------------------------------------------------------------+-------------------+
 
 text.
 
+Sizes
+~~~~~
+
+Text.
+
 [[!vector2.png C]]
 
-[[!vector3.png C]]
 
 In NxOgre, Ogre and PhysX a class is reserved to hold three dimensional components; x,y,z as Real types. PhysX refers them as NxVec3 which most likely you'll never see, NxOgre are named *Vec3* and Ogre's are called Vector3.
 

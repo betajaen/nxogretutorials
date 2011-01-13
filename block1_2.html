@@ -89,31 +89,47 @@
 <p>To express lengths, distances and of course directions in NxOgre, we use a vector. If you've ever taken an advanced course in Mathmatics then yes, the vector is exactly like a <a class="reference external" href="http://en.wikipedia.org/wiki/Euclidean_vector">vector</a>.</p>
 <p><div class="image-center"><img src="vector1.png" /></div></p>
 <p>At first glance a vector is just a point in space, as it carries the x, y, z components with it. Depending on the use of the vector it may be a coordinate, size or a normal.</p>
+<div class="section" id="coordinates">
+<h2>Coordinates</h2>
 <p>Coordinates you should be already familar with. Coordinates may be refered in &quot;Global Space&quot; or &quot;Local Space&quot;, the difference being is how they refer to an arbitrary point. In Global Space, an ant's position would be in reference to the world center (0,0,0), where as in local space the ant's position would be refered to where the ant is standing on; i.e. a stone step.</p>
 <p>In NxOgre, nearly everything is referred to in Global Space, but in Ogre due to the use of the Scene Graph Global and Local spaces are used frequently.</p>
+</div>
+<div class="section" id="normals">
+<h2>Normals</h2>
 <p>Normals can represent velocities, directions and direction of faces of triangles.</p>
+<p><div class="image-center"><img src="vector3.png" /></div></p>
 <p>Although normals are vectors, they are technically two components; a magnitude (length of the vector), and normalised direction.</p>
 <table border="1" class="docutils">
 <colgroup>
+<col width="14%" />
+<col width="69%" />
 <col width="17%" />
-<col width="83%" />
 </colgroup>
+<thead valign="bottom">
+<tr><th class="head">Component</th>
+<th class="head">Operation</th>
+<th class="head">Function</th>
+</tr>
+</thead>
 <tbody valign="top">
 <tr><td><strong>Magnitude</strong></td>
 <td><div class="equation-block"><img src="eq/40c99f1ac18ba81b6a3c9a6b5151666b.png" alt="||\mathbf{m}|| = \sqrt{x^2 + y^2 + z^2}" /></div>
 </td>
+<td><code class="code-inline">Vec3::magnitude</code></td>
 </tr>
 <tr><td><strong>Direction</strong></td>
-<td><div class="equation-block"><img src="eq/aae9a267ebd2b634d1e2b87cf6af4655.png" alt="\mathbf{v}_x &= \mathbf{v}_x \times \frac{1}{||\mathbf{m}||} \
-\mathbf{v}_y &= \mathbf{v}_y \times \frac{1}{||\mathbf{m}||} \
-\mathbf{v}_z &= \mathbf{v}_z \times \frac{1}{||\mathbf{m}||}" /></div>
+<td><div class="equation-block"><img src="eq/fd8d3c0eb9440a11b8a6d52423219a74.png" alt="\mathbf{v}_i &= \mathbf{v}_i \times \frac{1}{||\mathbf{m}||}" /></div>
 </td>
+<td><code class="code-inline">Vec3::normalise</code></td>
 </tr>
 </tbody>
 </table>
 <p>text.</p>
+</div>
+<div class="section" id="sizes">
+<h2>Sizes</h2>
+<p>Text.</p>
 <p><div class="image-center"><img src="vector2.png" /></div></p>
-<p><div class="image-center"><img src="vector3.png" /></div></p>
 <p>In NxOgre, Ogre and PhysX a class is reserved to hold three dimensional components; x,y,z as Real types. PhysX refers them as NxVec3 which most likely you'll never see, NxOgre are named <em>Vec3</em> and Ogre's are called Vector3.</p>
 <p>They are all similarly structured as so:</p>
 <div class="code-block"><pre><span class="r">namespace</span> NxOgre
@@ -125,6 +141,7 @@
     };
 }</pre></div>
 <p>The x, y, z components are publically accesible and meant to be set directly, without the need of get/set functions.</p>
+</div>
 </div>
 <div class="section" id="angles">
 <h1>Angles</h1>
