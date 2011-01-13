@@ -202,3 +202,30 @@ div.code-block pre { color: #333; }
 .ty { color:#339; font-weight:bold }
 .v  { color:#036 }
 .xt { color:#444 }
+
+hr
+{
+	display: none;
+}
+
+hr + p
+{
+	text-align: center;
+	font-size: 16px;
+	background-color: #f8f8f8;
+	padding:1em 0 1em 0;
+	border-top:1px solid #eee;
+}
+
+hr + p a
+{
+	font-weight: bolder;
+	color: #555;
+	text-decoration: none;
+}
+
+hr + p a:hover
+{
+	color: white;
+	background-color: #555;
+}

@@ -25,18 +25,19 @@ NxOgre::Real F = m * t;</pre></div>
 </div>
 <div class="section" id="dimensions">
 <h1>Dimensions</h1>
-<p>A dimension is an extension of space in a given direction. Although it could be seen as the minimium amount of coordinates required to describe a shape with in it. A line can be found by one coordinate, a surface by two, and a volume by three.</p>
+<p>A dimension is an extension of space in a given direction. Although it could be seen as the minimium amount of coordinates required to describe the location of a shape with in it. One dimensional space, requires one coordinate.  Two dimensional space; two, and three dimensional space - our space, requires three dimensions.</p>
 <p><div class="image-center"><img src="dimensions.png" /></div></p>
-<p>Each dimension has a name; 1st is called <strong>X</strong>, 2nd is called <strong>Y</strong> and the 3rd is Z and they are perpendicular to each other. In NxOgre and PhysX; X is typically coloured in red, Y in green and Z in blue.</p>
+<p>Each dimension has a name; 1st is called <strong>X</strong>, 2nd is called <strong>Y</strong> and the 3rd is <strong>Z</strong> and they are perpendicular to each other. In NxOgre and PhysX; X is typically coloured in red, Y in green and Z in blue.</p>
 <p><div class="image-center"><img src="axis.png" /></div></p>
 <p>As we exist in three dimensions, so does NxOgre and PhysX. Although with some extra code, the third dimension Z can be ignored, more or less making the world act as a two dimensional space. Even further code can be added to behave in a single dimension, if you so wish.</p>
 <p>By default Scene gravity is applied in the Y direction, so Y is considered &quot;up&quot;. NxOgre also follows Ogre's tradition of treating -Z as &quot;forward&quot;, although this isn't enforced.</p>
 <blockquote>
-If the concept of living in different dimensions peaks your interest, then you should have a read of <a class="reference external" href="http://www.amazon.com/Flatland-Romance-Dimensions-Thrift-Editions/dp/048627263X">Flatland - A Romance of Many Dimensions</a> by Edwin A. Abbot, a short Victorian narrative of living in a two dimensional world.</blockquote>
+If the concept of living in different dimensions peaks your interest, then you should have a read of <a class="reference external" href="http://www.amazon.com/Flatland-Romance-Dimensions-Thrift-Editions/dp/048627263X">Flatland - A Romance of Many Dimensions</a> by Edwin A. Abbot, a short Victorian narrative of beings living in a two dimensional world.</blockquote>
 </div>
 <div class="section" id="weights-and-measures">
 <h1>Weights and Measures</h1>
-<p>To provide a common way of comparing how far away is something, or how large is this, or how long does that take to complete, we use a system of agreed units. Most countries use the metric system, metres (meters) and kilograms, and everyone uses seconds to measure time. If your in a country that uses the imperial system (inches/feet and pounds), then you'll have to adjust. For a frame of reference a meter is just under  half the height of an average interior door, and two pounds of sugar is about a kilogram, and it is highly probable you've already seen road signs measured in kilometers already.</p>
+<p>To provide a common way of comparing how far away is something, or how large is this, or how long does that take to complete, we use a system of agreed units. Most countries use the metric system, metres (meters) and kilograms, and everyone uses seconds to measure time. If your in a country that uses the imperial system (inches/feet and pounds), then you may not be completely familar with it.</p>
+<p>For a frame of reference a meter is just under  half the height of an average interior door, and two pounds of sugar is about a kilogram, and it is highly probable you've already seen road signs measured in kilometers already.</p>
 <p>The modern form of the metric system is the <a class="reference external" href="http://www.bipm.org/en/si/si_brochure/general.html">International System of Units</a> or <strong>SI</strong> was agreed upon many years ago. It is commonly used in scientific communities, and if not nearly all of the countries in the world.</p>
 <p>As, you've probably guessed by now NxOgre uses the SI system for measurement. It only requires the metre-kilogram-second base units, as the other units of electric current, temperature, luminous intensity and amount of substances are sadly not used by features of PhysX.</p>
 <table border="1" class="docutils">
@@ -66,9 +67,9 @@ If the concept of living in different dimensions peaks your interest, then you s
 </tr>
 </tbody>
 </table>
-<p>Unfortunately, due to the nature of the C++ syntax, it isn't possible to give Real numbers naturally as we do in the real world.</p>
+<p>Unfortunately, due to the nature of the C++ syntax, it isn't possible to give Real numbers units naturally as we do in the real world.</p>
 <div class="code-block"><pre>Real distance = <span class="fl">5</span><span class="fl">.0</span> m/s * <span class="fl">2</span><span class="fl">.0</span> s;</pre></div>
-<p>Substitutions could be used, but are hardly practical to use for an end-user.</p>
+<p>Substitutions could be used, but are hardly practical for an end-user to use.</p>
 <div class="code-block"><pre>Real distance = metres_per_second(<span class="fl">5</span><span class="fl">.0</span>) * seconds(<span class="fl">2</span><span class="fl">.0</span>);</pre></div>
 <p>Instead NxOgre, just assumes your length units are in meters, your masses are in kilograms and your time is measured in seconds.</p>
 <div class="code-block"><pre>Real distance = <span class="fl">5</span><span class="fl">.0</span> * <span class="fl">2</span><span class="fl">.0</span>;</pre></div>
