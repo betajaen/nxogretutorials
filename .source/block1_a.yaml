@@ -5,8 +5,47 @@ sidebar: no
 
 ====answer1_1 Answer 1.1
 
+They are currently half way through the journey.
 
-The new distance is the distance of the journey, minus of the distance of the shortcut saved.
+.. $$ &= 1000 `m` \times \frac{1}{2} |||| 
+      &= 500 `m`
 
-.. $$ l &= 1000 {m} - 300 {m} ||||
-	    &= 700 {m}
+The shortcut's distance is the distance they are now, and the distance of the garden.
+
+.. $$ &= 500 `m` + 30 `m` ||||
+      &= 530 `m`
+
+The distance saved, is the difference between the distance of the original journey and the shortcut.
+
+.. $$ &= 1000 `m` - 530 `m` ||||
+      &= 470 `m`
+
+The new journey is **430 metres** long, and they have saved **470 metres** by taking the shortcut.
+
+
+====answer1_2 Answer 1.2
+
+The first step is to work out how many bricks are used in one layer of the tower.
+
+Bricks used in the width and length of the tower
+
+.. $$ w &= \frac{25 `cm`}{5 `cm`} = 5 `blocks` ||||
+	  l &= \frac{25 `cm`}{1 `cm`} = 25 `blocks`
+
+So the number of blocks in one layer is;
+
+.. $$ &= 5 `blocks` \times 25 `blocks` ||||
+      &= 125 `blocks`
+
+There were 15000 blocks used, so there are 120 layers of blocks.
+
+.. $$ &= \frac{15000 `blocks`}{125 `blocks`} ||||
+	  &= 120 `blocks`
+
+Each block is 1.5cm high, so the height of the tower is.
+
+.. $$ &= 120 `blocks` \times 1.5 `cm` ||||
+	  &= 180 `cm`
+
+
+The tower is **180 cm** high.

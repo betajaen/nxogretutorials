@@ -9,26 +9,30 @@ LAYOUTS = {"basic" => "<html><head><title>{TITLE}</title></head><body>{BODY}</bo
 SIDEBAR = {}
 
 def makeLatex(string)
+
+	puts "--- Latex Begin ---"
+	
 	string.gsub!("<!-- $$","")
 	string.gsub!("-->","")
 	string.strip!
 	string.gsub!("||", '\\')
+	puts string
 
 	# units
-	string.gsub!(/(\{[^}]+\})/) do |v|
-		"\\unit" + v
+	string.gsub!(/(`[^`]+`)/) do |v|
+		"\\unit{" + v.gsub('`','').strip + "}"
 	end
 
-	str = "\\documentclass[12pt]{article}\n\\pagestyle{empty}\n\\usepackage{mathtools}\n\\newcommand{\\unit}[1]{\\ensuremath{\\, \\mathrm{#1}}}\\begin{document}\n\\begin{align*}\n#{string}\n\\end{align*}\n\\end{document}\n"
-	File.open('.temp/eq.tex', 'w') {|f| f.write(str) }	
-
     name = Digest::MD5.hexdigest(string).downcase
-    name << ".png"
+	str = "\\documentclass[12pt]{article}\n\\pagestyle{empty}\n\\usepackage{mathtools}\n\\newcommand{\\unit}[1]{\\ensuremath{\\, \\mathrm{#1}}}\\begin{document}\n\\begin{align*}\n#{string}\n\\end{align*}\n\\end{document}\n"
+	
+	File.open(".temp/#{name}.tex", 'w') {|f| f.write(str) }	
 
-    system "latex -halt-on-error -output-directory .temp .temp/eq.tex"
-    system "dvipng -T tight -bg Transparent -o ../eq/#{name} .temp/eq.dvi"
+    system "latex -halt-on-error -output-directory .temp .temp/#{name}.tex"
+    system "dvipng -T tight -bg Transparent -o ../eq/#{name}.png .temp/#{name}.dvi"
 
-    "<div class=\"equation-block\"><img src=\"eq/#{name}\" alt=\"#{string}\" /></div>"
+    puts "--- Latex End ---"
+    "<div class=\"equation-block\"><img src=\"eq/#{name}.png\" alt=\"#{string}\" /></div>"
 end
 
 Dir.glob("layouts/*.html") do |f|
@@ -59,7 +63,10 @@ sidebar_html.chop!.chop!.chop!
 
 Dir.glob("*.yaml").each do |f|
 	fn = File.basename(f).split('.')[0]
+	
+	puts "---File Begin---"
 	puts fn
+
 	file = File.read(f)
 	header, content = file.split('---',2)
 	header.strip!
@@ -80,7 +87,7 @@ Dir.glob("*.yaml").each do |f|
 	body.gsub!("<p>---</p>", "<hr />")
 
 	# Latex
-	body.gsub!(/(<!--\s\$\$[^>]*-->)/m) do |v|
+	body.gsub!(/(<!--\s\$\$?[^>]*-->)/m) do |v|
 		makeLatex(v)
 	end
 
@@ -146,4 +153,6 @@ Dir.glob("*.yaml").each do |f|
 	html.gsub!('{SIDEBAR}', sidebar_html)
 	html.gsub!('{TITLE}', title)
 	File.open('../' + fn + '.html', 'w') {|f| f.write(html) }
+
+	puts "---File End---"
 end
