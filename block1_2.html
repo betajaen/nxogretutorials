@@ -91,8 +91,15 @@
 <p>At first glance a vector is just a point in space, as it carries the x, y, z components with it. Depending on the use of the vector it may be a coordinate, size or a normal.</p>
 <div class="section" id="coordinates">
 <h2>Coordinates</h2>
-<p>Coordinates you should be already familar with. Coordinates may be refered in &quot;Global Space&quot; or &quot;Local Space&quot;, the difference being is how they refer to an arbitrary point. In Global Space, an ant's position would be in reference to the world center (0,0,0), where as in local space the ant's position would be refered to where the ant is standing on; i.e. a stone step.</p>
-<p>In NxOgre, nearly everything is referred to in Global Space, but in Ogre due to the use of the Scene Graph Global and Local spaces are used frequently.</p>
+<p>Coordinates you should be already familar with. They are simply distances in each dimension away from another point.</p>
+<div class="equation-block"><img src="eq/63c63366928b92783f7b22eea8c264e9.png" alt="\mathbf{V} = \begin{pmatrix}
+ 2.0 \
+ 6.0 \
+ 4.0 \
+\end{pmatrix}" /></div>
+<p>Coordinates may be refered in &quot;Global Frame&quot; or &quot;Local Frame&quot;, the difference being is how they refer to an arbitrary point. In Global Space, a giraffe paperweight's position would be in reference to the world center (0,0,0), where as in local space the paperweights position would be refered to where the paperweight is placed upon or attached to; i.e. a piece of paper.</p>
+<p><div class="image-center"><img src="referenceframes.png" /></div></p>
+<p>In NxOgre, nearly everything is referred to in the Global frame, but in Ogre due to the use of the Scene Graph global and local frame are used frequently.</p>
 </div>
 <div class="section" id="normals">
 <h2>Normals</h2>
@@ -101,9 +108,9 @@
 <p>Although normals are vectors, they are technically two components; a magnitude (length of the vector), and normalised direction. The magnitude is the length of the line between the world center (0,0,0) to the normal position; e.g. (10,12,5) and the direction is the norm of the vector:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="14%" />
-<col width="69%" />
-<col width="17%" />
+<col width="12%" />
+<col width="72%" />
+<col width="16%" />
 </colgroup>
 <thead valign="bottom">
 <tr><th class="head">Component</th>
@@ -118,7 +125,7 @@
 <td><code class="code-inline">Vec3::magnitude</code></td>
 </tr>
 <tr><td><strong>Direction</strong></td>
-<td><div class="equation-block"><img src="eq/fd8d3c0eb9440a11b8a6d52423219a74.png" alt="\mathbf{v}_i &= \mathbf{v}_i \times \frac{1}{||\mathbf{m}||}" /></div>
+<td><div class="equation-block"><img src="eq/fabac689166491d563e766905d3befd5.png" alt="\mathbf{v}_i &= \mathbf{v}_i \times \frac{1}{||\mathbf{m}||}\;\;\;(i = 0,1,2)." /></div>
 </td>
 <td><code class="code-inline">Vec3::normalise</code></td>
 </tr>

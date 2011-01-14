@@ -80,9 +80,20 @@ At first glance a vector is just a point in space, as it carries the x, y, z com
 Coordinates
 ~~~~~~~~~~~
 
-Coordinates you should be already familar with. Coordinates may be refered in "Global Space" or "Local Space", the difference being is how they refer to an arbitrary point. In Global Space, an ant's position would be in reference to the world center (0,0,0), where as in local space the ant's position would be refered to where the ant is standing on; i.e. a stone step.
+Coordinates you should be already familar with. They are simply distances in each dimension away from another point.
 
-In NxOgre, nearly everything is referred to in Global Space, but in Ogre due to the use of the Scene Graph Global and Local spaces are used frequently. 
+.. $$ \mathbf{V} = \begin{pmatrix}
+       2.0 ....
+       6.0 ....
+       4.0 ....
+      \end{pmatrix}
+
+
+Coordinates may be refered in "Global Frame" or "Local Frame", the difference being is how they refer to an arbitrary point. In Global Space, a giraffe paperweight's position would be in reference to the world center (0,0,0), where as in local space the paperweights position would be refered to where the paperweight is placed upon or attached to; i.e. a piece of paper.
+
+[[!referenceframes.png C]]
+
+In NxOgre, nearly everything is referred to in the Global frame, but in Ogre due to the use of the Scene Graph global and local frame are used frequently.
 
 Normals
 ~~~~~~~
@@ -93,13 +104,13 @@ Normals can represent velocities, directions and direction of faces of triangles
 
 Although normals are vectors, they are technically two components; a magnitude (length of the vector), and normalised direction. The magnitude is the length of the line between the world center (0,0,0) to the normal position; e.g. (10,12,5) and the direction is the norm of the vector:
 
-+---------------+---------------------------------------------------------------------------+-------------------+
-| Component     | Operation                                                                 | Function          |
-+===============+===========================================================================+===================+
-| **Magnitude** | .. $$ ||\mathbf{m}|| = \sqrt{x^2 + y^2 + z^2}                             | @Vec3::magnitude@ |
-+---------------+---------------------------------------------------------------------------+-------------------+
-| **Direction** | .. $$ \mathbf{v}_i &= \mathbf{v}_i \times \frac{1}{||\mathbf{m}||}        | @Vec3::normalise@ |
-+---------------+---------------------------------------------------------------------------+-------------------+
++---------------+---------------------------------------------------------------------------------------+-------------------+
+| Component     | Operation                                                                             | Function          |
++===============+=======================================================================================+===================+
+| **Magnitude** | .. $$ ||\mathbf{m}|| = \sqrt{x^2 + y^2 + z^2}                                         | @Vec3::magnitude@ |
++---------------+---------------------------------------------------------------------------------------+-------------------+
+| **Direction** | .. $$ \mathbf{v}_i &= \mathbf{v}_i \times \frac{1}{||\mathbf{m}||}\;\;\;(i = 0,1,2).  | @Vec3::normalise@ |
++---------------+---------------------------------------------------------------------------------------+-------------------+
 
 Sizes
 ~~~~~
