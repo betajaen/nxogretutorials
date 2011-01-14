@@ -143,7 +143,7 @@ The x, y, z components are publically accesible and meant to be set directly, wi
 Angles
 ======
 
-Text
+[[!radiansdegrees.png C]]
 
 
 Quaternions
