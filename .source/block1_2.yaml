@@ -141,7 +141,7 @@ For now, we will concentrate on the most popular type of Vector; Vec3:
            public:
             Vec3();
             Vec3(Real X, Real Y, Real Z);
-            Vec3(const Vec3& vec3;
+            Vec3(const Vec3& other);
             ~Vec3();
 
             // etc.
