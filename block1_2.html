@@ -215,7 +215,7 @@ z := z + other.z</pre></div>
 \mathbf{V_z} \times \frac{
 1}{||\mathbf{M}||}\end{pmatrix}" /></div>
 </td>
-<td><div class="code-block"><pre>Real m := magnitude
+<td><div class="code-block"><pre>Real m
 m := magnitude
 x := x * <span class="i">1</span> / m
 y := y * <span class="i">1</span> / m
@@ -226,7 +226,9 @@ z := z * <span class="i">1</span> / m
 <tr><td>magnitude</td>
 <td><div class="equation-block"><img src="eq/683b34df191bababbcf6c853b53b7d8f.png" alt="|| \mathbf{V} ||" /></div>
 </td>
-<td><div class="code-block"><pre>SQRT(x*x + y*y + z*z)</pre></div>
+<td><div class="code-block"><pre>Real out
+out := sqrt(x*x + y*y + z*z)
+<span class="r">return</span> out</pre></div>
 </td>
 </tr>
 <tr><td>cross(other)</td>
@@ -250,7 +252,7 @@ out := out + (z * other.z)
 </td>
 </tr>
 <tr><td>mid(other)</td>
-<td><div class="equation-block"><img src="eq/679207e393700a13a039162750952fd2.png" alt="\mathbf{V} \times \mathbf{V_{other}}" /></div>
+<td><div class="equation-block"><img src="eq/ed790e134796eb704dd092dde146a792.png" alt="~~~~" /></div>
 </td>
 <td><div class="code-block"><pre>Vec3 out
 out.x := (x + other.x) / <span class="i">2</span>
@@ -259,7 +261,7 @@ out.z := (z + other.z) / <span class="i">2</span>
 <span class="r">return</span> out</pre></div>
 </td>
 </tr>
-<tr><td>mid(other)</td>
+<tr><td>distance(other)</td>
 <td><div class="equation-block"><img src="eq/02ab54f1e641376aa9f352277b3c1233.png" alt="|| \mathbf{V} - \mathbf{V_{other}} ||" /></div>
 </td>
 <td><div class="code-block"><pre>Vec3 out
