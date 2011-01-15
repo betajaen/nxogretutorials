@@ -153,10 +153,12 @@ Z is the last dimension, and not used in a capsule. But it's usually the shapes 
     <span class="r">class</span> <span class="cl">Vec3</span>
     {
         <span class="di">public</span>:
-         Vec3() : x(<span class="i">0</span>), y(<span class="i">0</span>), z(<span class="i">0</span>) { }
-         Vec3(<span class="di">const</span> Vec3&amp; vec3) : x(other.x), y(other.y), z(other.z)
+         Vec3();
+         Vec3(Real X, Real Y, Real Z);
+         Vec3(<span class="di">const</span> Vec3&amp; vec3;
+         ~Vec3();
 
-         <span class="c">// ...</span>
+         <span class="c">// etc.</span>
 
          Real x, y, z;
 
@@ -207,13 +209,10 @@ z := z + other.z</pre></div>
 </td>
 </tr>
 <tr><td>normalise</td>
-<td><div class="equation-block"><img src="eq/98d3546c0cbd0365b40c6f6a8676e9a1.png" alt="\begin{pmatrix}
-\mathbf{V_x} \times \frac{
-1}{||\mathbf{M}||} \
-\mathbf{V_y} \times \frac{
-1}{||\mathbf{M}||} \
-\mathbf{V_z} \times \frac{
-1}{||\mathbf{M}||}\end{pmatrix}" /></div>
+<td><div class="equation-block"><img src="eq/2d9355352a7de8379d78bfdea49a8c5d.png" alt="\begin{pmatrix}
+\mathbf{V_x} \times ||\mathbf{M}||^{-1} \
+\mathbf{V_y} \times ||\mathbf{M}||^{-1} \
+\mathbf{V_z} \times ||\mathbf{M}||^{-1}\end{pmatrix}" /></div>
 </td>
 <td><div class="code-block"><pre>Real m
 m := magnitude

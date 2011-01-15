@@ -139,10 +139,12 @@ For now, we will concentrate on the most popular type of Vector; Vec3:
        class Vec3
        {
            public:
-            Vec3() : x(0), y(0), z(0) { }
-            Vec3(const Vec3& vec3) : x(other.x), y(other.y), z(other.z)
-            
-            // ...
+            Vec3();
+            Vec3(Real X, Real Y, Real Z);
+            Vec3(const Vec3& vec3;
+            ~Vec3();
+
+            // etc.
 
             Real x, y, z;
 
@@ -170,9 +172,9 @@ However, there are a number of in built helper functions that can be used.
 |                      |                                                |    y := y + other.y                       |
 |                      |                                                |    z := z + other.z                       |
 +----------------------+------------------------------------------------+-------------------------------------------+
-| normalise            |  .. $$ VEC(B(V_x) ** F(1,||B(M)||),            | .. Real m                                 |
-|                      |            B(V_y) ** F(1,||B(M)||),            |    m := magnitude                         |
-|                      |            B(V_z) ** F(1,||B(M)||) )           |    x := x * 1 / m                         |
+| normalise            |  .. $$ VEC(B(V_x) ** ||B(M)||^{-1},            | .. Real m                                 |
+|                      |            B(V_y) ** ||B(M)||^{-1},            |    m := magnitude                         |
+|                      |            B(V_z) ** ||B(M)||^{-1})            |    x := x * 1 / m                         |
 |                      |                                                |    y := y * 1 / m                         |
 |                      |                                                |    z := z * 1 / m                         |
 |                      |                                                |    return m                               |
