@@ -92,11 +92,8 @@
 <div class="section" id="coordinates">
 <h2>Coordinates</h2>
 <p>Coordinates you should be already familar with. They are simply distances in each dimension away from another point.</p>
-<div class="equation-block"><img src="eq/63c63366928b92783f7b22eea8c264e9.png" alt="\mathbf{V} = \begin{pmatrix}
- 2.0 \
- 6.0 \
- 4.0 \
-\end{pmatrix}" /></div>
+<div class="equation-block"><img src="eq/c0393f813304ea37b595898a87223222.png" alt="\mathbf{V} = \begin{pmatrix}
+2.0 \ 6.0 \ 4.0\end{pmatrix}" /></div>
 <p>Coordinates may be refered in &quot;Global Frame&quot; or &quot;Local Frame&quot;, the difference being is how they refer to an arbitrary point. In Global Space, a giraffe paperweight's position would be in reference to the world center (0,0,0), where as in local space the paperweights position would be refered to where the paperweight is placed upon or attached to; i.e. a piece of paper.</p>
 <p><div class="image-center"><img src="referenceframes.png" /></div></p>
 <p>In NxOgre, nearly everything is referred to in the Global frame, but in Ogre due to the use of the Scene Graph global and local frame are used frequently.</p>
@@ -134,22 +131,144 @@
 </div>
 <div class="section" id="sizes">
 <h2>Sizes</h2>
-<p>Text.</p>
+<p>Sizes in NxOgre are expressed in according to the subject matter. Boxes require three dimensions; Width, Length, and Height. Capsules only require a radius and height so that is just two, and Spheres just one; a radius.</p>
+<p>When giving a size to NxOgre, you will need to use the correct data type. These would be Vectors with three components, two components or a single Real type. In some cases, you can use an alternate with three Reals or two Reals if you prefer.</p>
+<div class="equation-block"><img src="eq/ff7d24bf1defd22a6006e3f3aaecbf32.png" alt="S_{box} &= \begin{pmatrix}
+1.0 \unit{m} &  2 \unit{m} &  1.0 \unit{m}\end{pmatrix}    \
+S_{capsule} &= \begin{pmatrix}
+0.5 \unit{m} &  1.85 \unit{m}\end{pmatrix}      \
+S_{sphere} &= 0.5 \unit{m}" /></div>
+<p>As a size may use upto dimensions to describe it's size, it is useful to know which dimension in the contex of a size means.</p>
+<p>Using a capsule as an example; X is the first dimension, so it's usually the distance to the end of the shape to it's centre.A capsule's radius is the first dimension, so X is the capsule's radius.
+Y is the second dimension, and we commonly use Y as up then Y is the shape's height.
+Z is the last dimension, and not used in a capsule. But it's usually the shapes length.</p>
 <p><div class="image-center"><img src="vector4.png" /></div></p>
 </div>
-<div class="section" id="nxogre-vec3">
-<h2>NxOgre::Vec3</h2>
-<p>In NxOgre, Ogre and PhysX a class is reserved to hold three dimensional components; x,y,z as Real types. PhysX refers them as NxVec3 which most likely you'll never see, NxOgre are named <em>Vec3</em> and Ogre's are called Vector3.</p>
-<p>They are all similarly structured as so:</p>
+<div class="section" id="nxogre-vec2-and-nxogre-vec3">
+<h2>NxOgre::Vec2 and NxOgre::Vec3</h2>
+<p>In NxOgre, Ogre and PhysX classes are reserved to hold two or dimensional components; x, y and sometimes z, these are Real types. It is unlikely you'll use the PhysX version of these, but NxOgre's are called <strong>Vec2</strong> and <strong>Vec3</strong>. Ogre has it's own version called Vector2 and Vector3. There is no &quot;Vec1&quot; class as this would be a Real type.</p>
+<p>For now, we will concentrate on the most popular type of Vector; Vec3:</p>
 <div class="code-block"><pre><span class="r">namespace</span> NxOgre
 {
     <span class="r">class</span> <span class="cl">Vec3</span>
     {
         <span class="di">public</span>:
+         Vec3() : x(<span class="i">0</span>), y(<span class="i">0</span>), z(<span class="i">0</span>) { }
+         Vec3(<span class="di">const</span> Vec3&amp; vec3) : x(other.x), y(other.y), z(other.z)
+
+         <span class="c">// ...</span>
+
          Real x, y, z;
+
     };
 }</pre></div>
-<p>The x, y, z components are publically accesible and meant to be set directly, without the need of get/set functions.</p>
+<p>The vector's components; x, y and z are left pubically open. It would be inefficent to have setX, getX, setY, getY, setZ and getZ functions, and as there is no such thing as a &quot;Bad Vector&quot; from the user giving an wrong value, the user can safely do any math operations upon them.</p>
+<p>However, there are a number of in built helper functions that can be used.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="42%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Function</th>
+<th class="head">Operation</th>
+<th class="head">Pseudo Code</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>set(x,y,z)</td>
+<td><div class="equation-block"><img src="eq/28237488b487152d6ca22bfd763a433d.png" alt="\mathbf{V_x} &= x \
+\mathbf{V_y} &= y \
+\mathbf{V_z} &= z" /></div>
+</td>
+<td><div class="code-block"><pre>x := x
+y := y
+y := z</pre></div>
+</td>
+</tr>
+<tr><td>operator= (other)</td>
+<td><div class="equation-block"><img src="eq/92c9833c20837f29672dec352dee1c2e.png" alt="\begin{pmatrix}
+\mathbf{V_{other_x}} \
+\mathbf{V_{other_y}} \
+\mathbf{V_{other_z}}\end{pmatrix}" /></div>
+</td>
+<td><div class="code-block"><pre>x := other.x
+y := other.y
+z := other.z</pre></div>
+</td>
+</tr>
+<tr><td>operator+ (other)</td>
+<td><div class="equation-block"><img src="eq/d693de87864a9584780a043ec60930ba.png" alt="\mathbf{V} + \mathbf{V_{other}}" /></div>
+</td>
+<td><div class="code-block"><pre>x := x + other.x
+y := y + other.y
+z := z + other.z</pre></div>
+</td>
+</tr>
+<tr><td>normalise</td>
+<td><div class="equation-block"><img src="eq/98d3546c0cbd0365b40c6f6a8676e9a1.png" alt="\begin{pmatrix}
+\mathbf{V_x} \times \frac{
+1}{||\mathbf{M}||} \
+\mathbf{V_y} \times \frac{
+1}{||\mathbf{M}||} \
+\mathbf{V_z} \times \frac{
+1}{||\mathbf{M}||}\end{pmatrix}" /></div>
+</td>
+<td><div class="code-block"><pre>Real m := magnitude
+m := magnitude
+x := x * <span class="i">1</span> / m
+y := y * <span class="i">1</span> / m
+z := z * <span class="i">1</span> / m
+<span class="r">return</span> m</pre></div>
+</td>
+</tr>
+<tr><td>magnitude</td>
+<td><div class="equation-block"><img src="eq/683b34df191bababbcf6c853b53b7d8f.png" alt="|| \mathbf{V} ||" /></div>
+</td>
+<td><div class="code-block"><pre>SQRT(x*x + y*y + z*z)</pre></div>
+</td>
+</tr>
+<tr><td>cross(other)</td>
+<td><div class="equation-block"><img src="eq/679207e393700a13a039162750952fd2.png" alt="\mathbf{V} \times \mathbf{V_{other}}" /></div>
+</td>
+<td><div class="code-block"><pre>Vec3 out
+out.x := y * other.z - z * other.y
+out.y := z * other.x - x * other.z
+out.z := x * other.y - y * other.x
+<span class="r">return</span> out</pre></div>
+</td>
+</tr>
+<tr><td>dot(other)</td>
+<td><div class="equation-block"><img src="eq/f23a99fdfddb584d9df90564e036922d.png" alt="\mathbf{V} \cdot \mathbf{V_{other}}" /></div>
+</td>
+<td><div class="code-block"><pre>Real out
+out := x * other.x
+out := out + (y * other.y)
+out := out + (z * other.z)
+<span class="r">return</span> out</pre></div>
+</td>
+</tr>
+<tr><td>mid(other)</td>
+<td><div class="equation-block"><img src="eq/679207e393700a13a039162750952fd2.png" alt="\mathbf{V} \times \mathbf{V_{other}}" /></div>
+</td>
+<td><div class="code-block"><pre>Vec3 out
+out.x := (x + other.x) / <span class="i">2</span>
+out.y := (y + other.y) / <span class="i">2</span>
+out.z := (z + other.z) / <span class="i">2</span>
+<span class="r">return</span> out</pre></div>
+</td>
+</tr>
+<tr><td>mid(other)</td>
+<td><div class="equation-block"><img src="eq/02ab54f1e641376aa9f352277b3c1233.png" alt="|| \mathbf{V} - \mathbf{V_{other}} ||" /></div>
+</td>
+<td><div class="code-block"><pre>Vec3 out
+out := self - other
+<span class="r">return</span> out.magnitude</pre></div>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="section" id="angles">

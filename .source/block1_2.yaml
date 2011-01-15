@@ -82,11 +82,7 @@ Coordinates
 
 Coordinates you should be already familar with. They are simply distances in each dimension away from another point.
 
-.. $$ \mathbf{V} = \begin{pmatrix}
-       2.0 ....
-       6.0 ....
-       4.0 ....
-      \end{pmatrix}
+.. $$ B(V) = VEC(2.0, 6.0, 4.0)
 
 
 Coordinates may be refered in "Global Frame" or "Local Frame", the difference being is how they refer to an arbitrary point. In Global Space, a giraffe paperweight's position would be in reference to the world center (0,0,0), where as in local space the paperweights position would be refered to where the paperweight is placed upon or attached to; i.e. a piece of paper.
@@ -115,28 +111,96 @@ Although normals are vectors, they are technically two components; a magnitude (
 Sizes
 ~~~~~
 
-Text.
+Sizes in NxOgre are expressed in according to the subject matter. Boxes require three dimensions; Width, Length, and Height. Capsules only require a radius and height so that is just two, and Spheres just one; a radius.
+
+When giving a size to NxOgre, you will need to use the correct data type. These would be Vectors with three components, two components or a single Real type. In some cases, you can use an alternate with three Reals or two Reals if you prefer.
+
+.. $$ S_{box} &= INLINEVEC(1.0 `m`, 2 `m`, 1.0 `m`)    @@
+      S_{capsule} &= INLINEVEC(0.5 `m`, 1.85 `m`)      @@
+      S_{sphere} &= 0.5 `m`
+
+As a size may use upto dimensions to describe it's size, it is useful to know which dimension in the contex of a size means.
+
+Using a capsule as an example; X is the first dimension, so it's usually the distance to the end of the shape to it's centre.A capsule's radius is the first dimension, so X is the capsule's radius.
+Y is the second dimension, and we commonly use Y as up then Y is the shape's height.
+Z is the last dimension, and not used in a capsule. But it's usually the shapes length.
 
 [[!vector4.png C]]
 
+NxOgre::Vec2 and NxOgre::Vec3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-NxOgre::Vec3
-~~~~~~~~~~~~
+In NxOgre, Ogre and PhysX classes are reserved to hold two or dimensional components; x, y and sometimes z, these are Real types. It is unlikely you'll use the PhysX version of these, but NxOgre's are called **Vec2** and **Vec3**. Ogre has it's own version called Vector2 and Vector3. There is no "Vec1" class as this would be a Real type.
 
-In NxOgre, Ogre and PhysX a class is reserved to hold three dimensional components; x,y,z as Real types. PhysX refers them as NxVec3 which most likely you'll never see, NxOgre are named *Vec3* and Ogre's are called Vector3.
-
-They are all similarly structured as so:
+For now, we will concentrate on the most popular type of Vector; Vec3:
 
 .. namespace NxOgre
    {
        class Vec3
        {
            public:
+            Vec3() : x(0), y(0), z(0) { }
+            Vec3(const Vec3& vec3) : x(other.x), y(other.y), z(other.z)
+            
+            // ...
+
             Real x, y, z;
+
        };
    }
 
-The x, y, z components are publically accesible and meant to be set directly, without the need of get/set functions.
+
+The vector's components; x, y and z are left pubically open. It would be inefficent to have setX, getX, setY, getY, setZ and getZ functions, and as there is no such thing as a "Bad Vector" from the user giving an wrong value, the user can safely do any math operations upon them.
+
+However, there are a number of in built helper functions that can be used.
+
++----------------------+------------------------------------------------+-------------------------------------------+
+|  Function            |        Operation                               |   Pseudo Code                             |
++======================+================================================+===========================================+
+| set(x,y,z)           |  .. $$ B(V_x) &= x @@                          | .. x := x                                 |
+|                      |        B(V_y) &= y @@                          |    y := y                                 |
+|                      |        B(V_z) &= z                             |    y := z                                 |
++----------------------+------------------------------------------------+-------------------------------------------+
+| operator= (other)    |  .. $$ VEC(B(V_{other_x}),                     | .. x := other.x                           |
+|                      |            B(V_{other_y}),                     |    y := other.y                           |
+|                      |            B(V_{other_z}) )                    |    z := other.z                           |
+|                      |                                                |                                           |
++----------------------+------------------------------------------------+-------------------------------------------+
+| operator+ (other)    |  .. $$ B(V) + B(V_{other})                     | .. x := x + other.x                       |
+|                      |                                                |    y := y + other.y                       |
+|                      |                                                |    z := z + other.z                       |
++----------------------+------------------------------------------------+-------------------------------------------+
+| normalise            |  .. $$ VEC(B(V_x) ** F(1,||B(M)||),            | .. Real m := magnitude                    |
+|                      |            B(V_y) ** F(1,||B(M)||),            |    m := magnitude                         |
+|                      |            B(V_z) ** F(1,||B(M)||) )           |    x := x * 1 / m                         |
+|                      |                                                |    y := y * 1 / m                         |
+|                      |                                                |    z := z * 1 / m                         |
+|                      |                                                |    return m                               |
++----------------------+------------------------------------------------+-------------------------------------------+
+| magnitude            |  .. $$ || B(V) ||                              | .. SQRT(x*x + y*y + z*z)                  |
++----------------------+------------------------------------------------+-------------------------------------------+
+| cross(other)         |  .. $$ B(V) ** B(V_{other})                    | .. Vec3 out                               |
+|                      |                                                |    out.x := y * other.z - z * other.y     |
+|                      |                                                |    out.y := z * other.x - x * other.z     |
+|                      |                                                |    out.z := x * other.y - y * other.x     |
+|                      |                                                |    return out                             |
++----------------------+------------------------------------------------+-------------------------------------------+
+| dot(other)           |  .. $$ B(V) .. B(V_{other})                    | .. Real out                               |
+|                      |                                                |    out := x * other.x                     |
+|                      |                                                |    out := out + (y * other.y)             |  
+|                      |                                                |    out := out + (z * other.z)             | 
+|                      |                                                |    return out                             |
++----------------------+------------------------------------------------+-------------------------------------------+
+| mid(other)           |  .. $$ B(V) ** B(V_{other})                    | .. Vec3 out                               |
+|                      |                                                |    out.x := (x + other.x) / 2             |
+|                      |                                                |    out.y := (y + other.y) / 2             |
+|                      |                                                |    out.z := (z + other.z) / 2             |
+|                      |                                                |    return out                             |
++----------------------+------------------------------------------------+-------------------------------------------+
+| mid(other)           |  .. $$ || B(V) - B(V_{other}) ||               | .. Vec3 out                               |
+|                      |                                                |    out := self - other                    |
+|                      |                                                |    return out.magnitude                   |
++----------------------+------------------------------------------------+-------------------------------------------+
 
 .. _vector: http://en.wikipedia.org/wiki/Euclidean_vector
 

@@ -10,29 +10,66 @@ SIDEBAR = {}
 
 def makeLatex(string)
 
-	puts "--- Latex Begin ---"
-	
 	string.gsub!("<!-- $$","")
 	string.gsub!("-->","")
 	string.strip!
-	string.gsub!("..", '\\')
-	puts string
 
-	# units
+	# units  `km` `m` `seconds`
 	string.gsub!(/(`[^`]+`)/) do |v|
 		"\\unit{" + v.gsub('`','').strip + "}"
 	end
 
+	# times **
+	string.gsub!(/\*\*/) do |v|
+		"\\times"
+	end
+
+	# dot ..
+	string.gsub!(/\.\./) do |v|
+		"\\cdot"
+	end
+
+
+	# square root S()
+	string.gsub!(/(S\([^)]+\))/) do |v|
+		"\\sqrt{" + v.gsub('S(','').gsub(')','') + "}"
+	end
+	# bold B()
+	string.gsub!(/(B\([^)]+\))/) do |v|
+		"\\mathbf{" + v.gsub('B(','').gsub(')','') + "}"
+	end
+
+	# fraction F(1,2)
+	string.gsub!(/(F\([^)]+\))/) do |v|
+		"\\frac{\n" + v.gsub('F(','').gsub(')','').strip.split(',').join('}{') + "}"
+	end
+
+	# inline-vector INLINEVEC(1,2,3)
+	string.gsub!(/(INLINEVEC\([^)]+\))/) do |v|
+		"\\begin{pmatrix}\n" + v.gsub('INLINEVEC(','').gsub(')','').strip.split(',').join(' & ') + "\\end{pmatrix}"
+	end
+
+	# vectors VEC(1,2,3)
+	string.gsub!(/(VEC\([^)]+\))/) do |v|
+		"\\begin{pmatrix}\n" + v.gsub('VEC(','').gsub(')','').strip.split(',').join(' @@') + "\\end{pmatrix}"
+	end
+
+	string.gsub!("@", '\\')
+
     name = Digest::MD5.hexdigest(string).downcase
-	str = "\\documentclass[12pt]{article}\n\\pagestyle{empty}\n\\usepackage{mathtools}\n\\newcommand{\\unit}[1]{\\ensuremath{\\, \\mathrm{#1}}}\\begin{document}\n\\begin{align*}\n#{string}\n\\end{align*}\n\\end{document}\n"
+
+    if File.exists?("../eq/#{name}.png") == false
+		puts "--- Latex Begin ---"
+		puts string
+		str = "\\documentclass[12pt]{article}\n\\pagestyle{empty}\n\\usepackage{mathtools}\n\\newcommand{\\unit}[1]{\\ensuremath{\\, \\mathrm{#1}}}\\begin{document}\n\\begin{align*}\n#{string}\n\\end{align*}\n\\end{document}\n"
+		File.open(".temp/#{name}.tex", 'w') {|f| f.write(str) }	
+	    system "latex -quiet -halt-on-error -output-directory .temp .temp/#{name}.tex"
+	    system "dvipng -quiet -T tight -bg Transparent -o ../eq/#{name}.png .temp/#{name}.dvi"
+		puts "--- Latex End ---"	
+	end
 	
-	File.open(".temp/#{name}.tex", 'w') {|f| f.write(str) }	
-
-    system "latex -halt-on-error -output-directory .temp .temp/#{name}.tex"
-    system "dvipng -T tight -bg Transparent -o ../eq/#{name}.png .temp/#{name}.dvi"
-
-    puts "--- Latex End ---"
     "<div class=\"equation-block\"><img src=\"eq/#{name}.png\" alt=\"#{string}\" /></div>"
+
 end
 
 Dir.glob("layouts/*.html") do |f|
@@ -64,8 +101,7 @@ sidebar_html.chop!.chop!.chop!
 Dir.glob("*.yaml").each do |f|
 	fn = File.basename(f).split('.')[0]
 	
-	puts "---File Begin---"
-	puts fn
+	puts "File: " + fn
 
 	file = File.read(f)
 	header, content = file.split('---',2)
@@ -93,7 +129,7 @@ Dir.glob("*.yaml").each do |f|
 
 	# Code
 	body.gsub!(/(<!--?[^>]*-->)/m) do |v|
-		t = CodeRay.scan(v.slice(4..-4).strip, :cpp).div(:css => :class)
+		t = CodeRay.scan(v.slice(4..-4).gsub('@',"\n").strip, :cpp).div(:css => :class)
 		t.strip!
 		t.gsub!("<div class=\"CodeRay\">","")
 		t.chop!.chop!.chop!.chop!.chop!.chop!.strip! # remove </div>
@@ -132,14 +168,11 @@ Dir.glob("*.yaml").each do |f|
 	# Heading with anchors [[$name]]
 	body.gsub!(/(<p>\=\=\=\=.+<\/p>)/) do |v|
 		l, t = v.slice(7..-5).strip.split(" ", 2)
-		puts l
-		puts t
 		"<h2><a name=\"#{l}\"></a>#{t}</h2>"
 	end
 
 	# Internal links [[link title]]
 	body.gsub!(/(\[\[?[^\]]*\]\])/) do |v|
-		puts v
 		l, t = v.slice(2..-3).strip.split(" ", 2)
 		if (l.index('.'))
 			l.gsub!(".",".html#")
@@ -154,5 +187,4 @@ Dir.glob("*.yaml").each do |f|
 	html.gsub!('{TITLE}', title)
 	File.open('../' + fn + '.html', 'w') {|f| f.write(html) }
 
-	puts "---File End---"
 end
