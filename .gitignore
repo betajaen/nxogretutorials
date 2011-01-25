@@ -1,0 +1,27 @@
+# Directories
+Debug
+DebugStatic
+Final
+FinalStatic
+sdk
+ipch
+# Specific files
+clean.bat
+.developer
+*.developer*
+# Files of a type
+*.py
+*.pyc
+*.lnk
+*.obj
+*.manifest
+*.res
+*.user
+*.ncb
+*.suo
+*.dll
+*.NOGIT
+*.opensdf
+*.suo
+*.old
+*.sdf

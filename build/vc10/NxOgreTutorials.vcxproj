@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Final|Win32">
+      <Configuration>Final</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\DLL.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\1001.h" />
+    <ClInclude Include="..\source\1002.h" />
+    <ClInclude Include="..\source\1003.h" />
+    <ClInclude Include="..\source\1004.h" />
+    <ClInclude Include="..\source\101.h" />
+    <ClInclude Include="..\source\102.h" />
+    <ClInclude Include="..\source\103.h" />
+    <ClInclude Include="..\source\104.h" />
+    <ClInclude Include="..\source\105.h" />
+    <ClInclude Include="..\source\106.h" />
+    <ClInclude Include="..\source\107.h" />
+    <ClInclude Include="..\source\108.h" />
+    <ClInclude Include="..\source\109.h" />
+    <ClInclude Include="..\source\110.h" />
+    <ClInclude Include="..\source\111.h" />
+    <ClInclude Include="..\source\113.h" />
+    <ClInclude Include="..\source\114.h" />
+    <ClInclude Include="..\source\117.h" />
+    <ClInclude Include="..\source\1201.h" />
+    <ClInclude Include="..\source\1301.h" />
+    <ClInclude Include="..\source\1302.h" />
+    <ClInclude Include="..\source\1303.h" />
+    <ClInclude Include="..\source\303.h" />
+    <ClInclude Include="..\source\304.h" />
+    <ClInclude Include="..\source\304a.h" />
+    <ClInclude Include="..\source\305.h" />
+    <ClInclude Include="..\source\701.h" />
+    <ClInclude Include="..\source\702.h" />
+    <ClInclude Include="..\source\Test.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{fad6c6a2-5abe-ee7e-a4e8-9a3589cfa671}</ProjectGuid>
+    <ProjectName>NxOgreTutorials</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">Final\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">Final\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NxOgreTutorialsDebug</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">NxOgreTutorials</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(NXOGRE_DIR)\SDK\;$(OGRE_HOME)\include\;$(OGRE_HOME)\include\OGRE\;$(OGRE_HOME)\include\OIS\;$(OGRE_HOME)\boost_1_42\;$(NXOGRE_DIR)\..\critter\sdk\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;WIN32;_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>NxOgre.lib;OgreMain.lib;OIS.lib;CritterStatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(NXOGRE_DIR)\SDK;$(OGRE_HOME)\lib\release;$(OGRE_HOME)\boost_1_42\lib\;$(NXOGRE_DIR)\..\critter\sdk;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)NxOgreTutorials.dll</OutputFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>buildbot.bat maketutorials final</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(NXOGRE_DIR)\SDK\;$(OGRE_HOME)\include\;$(OGRE_HOME)\include\OGRE\;$(OGRE_HOME)\include\OIS\;$(OGRE_HOME)\boost_1_42\;$(NXOGRE_DIR)\..\critter\sdk\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;WIN32;_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>NxOgreDebug.lib;OgreMain_d.lib;OIS_d.lib;CritterDebugStatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(NXOGRE_DIR)\SDK;$(OGRE_HOME)\lib\debug;$(OGRE_HOME)\boost_1_42\lib\;$(NXOGRE_DIR)\..\critter\sdk;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)NxOgreTutorialsDebug.dll</OutputFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>buildbot.bat maketutorials debug</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
