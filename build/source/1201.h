@@ -46,7 +46,7 @@ public:
  Critter::RenderSystem*          mRenderSystem;
  Ogre::Real                      mCameraYaw, mCameraPitch;
  Ogre::Vector3                   mCameraOffset;
- Critter::BackgroundCharacter*   mSinbad;
+ Critter::AnimatedCharacter*     mSinbad;
  Critter::CharacterInputHelper   mSinbadHelper;
  NxOgre::Actor*                  mTestActor;
 
@@ -89,19 +89,19 @@ public:
   mRenderSystem->addAnimation("sinbad.mesh", SinbadLower, Critter::Enums::StockAnimationID_Land, "JumpEnd", 5.0, false);
   mRenderSystem->addAnimation("sinbad.mesh", SinbadLower, 100, "Dance", 5.0, false);
   
-  Critter::BackgroundCharacterDescription desc;
+  Critter::AnimatedCharacterDescription desc;
   desc.mShape = NxOgre::SimpleCapsule(5+0.5+0.1,2);
   desc.mCollisionMask = (Walls << 1) | (Objects << 1);
   desc.mMaxGroundSpeed = 17.0f;
   desc.setJumpVelocityFromMaxHeight(mScene->getGravity().y, 0.75f);
   
-  mSinbad = mRenderSystem->createBackgroundCharacter(Ogre::Vector3(0,50,0), Ogre::Radian(0), "sinbad.mesh", desc);
+  mSinbad = mRenderSystem->createAnimatedCharacter(Ogre::Vector3(0,5,0), Ogre::Radian(0), "sinbad.mesh", desc);
   
   
   NxOgre::RigidBodyDescription test_desc;
   test_desc.mDynamicRigidbodyFlags += NxOgre::DynamicRigidbodyFlags::FreezeRotation;
   
-  mTestActor = mScene->createActor(desc.mShape.to_desc(), NxOgre::Vec3(5,50,0), test_desc);
+  mTestActor = mScene->createActor(desc.mShape.to_desc(), NxOgre::Vec3(5,5,0), test_desc);
  }
  
  bool frameRenderingQueued(const FrameEvent& evt)
@@ -135,12 +135,27 @@ public:
   }
   
   if (mKeyboard->isKeyDown(OIS::KC_J))
+  {
+   mSinbadHelper.input.is_turning = false;
    mSinbadHelper.left(127);
+  }
   else if (mKeyboard->isKeyDown(OIS::KC_L))
   {
+   mSinbadHelper.input.is_turning = false;
    mSinbadHelper.right(127);
   }
-  
+
+  if (mKeyboard->isKeyDown(OIS::KC_U))
+  {
+   mSinbadHelper.input.is_turning = true;
+   mSinbadHelper.left();
+  }
+  else if (mKeyboard->isKeyDown(OIS::KC_O))
+  {
+   mSinbadHelper.input.is_turning = true;
+   mSinbadHelper.right();
+  }
+
   if (mKeyboard->isKeyDown(OIS::KC_SPACE))
   {
    mSinbadHelper.up(true);
@@ -182,7 +197,20 @@ public:
    {
     mSinbadHelper.input.up = true;
    }
-    
+   
+
+   if (js.mButtons[4])
+   {
+    mSinbadHelper.input.is_turning = false;
+    mSinbadHelper.right();
+   }
+
+   
+   if (js.mButtons[5])
+   {
+    mSinbadHelper.input.is_turning = false;
+    mSinbadHelper.left();
+   }
   }
   
   mSinbad->setInput(mSinbadHelper);
